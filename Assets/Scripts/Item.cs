@@ -68,7 +68,8 @@ public class Item : MonoBehaviour
             if(!isDragging)
             {
                 if(other.gameObject.tag == "Grinder" && type == Type.Plant)
-                transform.position = other.transform.position - new Vector3(0, 0.2f, 0);
+                transform.position = other.transform.position - new Vector3(0, 0.1f, 0);
+                //rb.bodyType = RigidbodyType2D.Static;
                 otherScript.AddItem(gameObject, subType);
                 Destroy(this);
             }

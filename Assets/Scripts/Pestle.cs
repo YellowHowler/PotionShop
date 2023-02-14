@@ -34,8 +34,17 @@ public class Pestle : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        transform.rotation = Quaternion.Euler(Vector3.forward * 90);
         isDragging = true;
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(mousePos.x, mousePos.y, 0);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        if(other.gameObject.tag == "Item" && other.gameObject.GetComponent<Item>() == null)
+        {
+            other.gameObject.GetComponent<Explodable>().explode();
+        }
     }
 }

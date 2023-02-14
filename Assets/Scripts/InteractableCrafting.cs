@@ -23,7 +23,7 @@ public class InteractableCrafting : MonoBehaviour
     
     public void ChangeSprite(bool transparent)
     {
-        if(transparent || items.Count == 0) sp.enabled = !transparent;
+        if(transparent || items.Count == 0) sp.color = new Color(1f,1f,1f,0.5f + BoolToInt(!transparent)*0.5f);
     }
 
     public void AddItem(GameObject item, string subType)
@@ -32,5 +32,11 @@ public class InteractableCrafting : MonoBehaviour
         {
             items.Add(subType);
         }
+    }
+
+    private int BoolToInt(bool val){
+        if (val)
+            return 1;
+        return 0;
     }
 }

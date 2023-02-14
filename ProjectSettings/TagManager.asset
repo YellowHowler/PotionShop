@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Grinder
   - Cauldron
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Grinder Inside
+    uniqueID: 1569364205
+    locked: 0
+  - name: Item
+    uniqueID: 1524954443
+    locked: 0
+  - name: Pestle
+    uniqueID: 1358840033
+    locked: 0
+  - name: Grinder Outside
+    uniqueID: 439866971
     locked: 0
