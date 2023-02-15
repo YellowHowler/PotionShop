@@ -29,24 +29,29 @@ public class Item : MonoBehaviour
 
     void Update()
     {
-       if(Input.GetMouseButtonUp(0))
+       if(Input.GetMouseButtonUp(0) || Vector2.Distance(mousePos, rb.position) > 2 && isDragging)
        {
-        enter = "";
         isDragging = false;
-        rb.bodyType = RigidbodyType2D.Dynamic;
+        //rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.gravityScale = 1;
+
         rb.velocity = Vector2.zero;
        } 
        if(isDragging)
        {
-        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.gravityScale = 0;
+        //rb.bodyType = RigidbodyType2D.Kinematic;
        }
     }
 
     private void OnMouseDrag()
     {
+        rb.velocity = Vector2.zero;
+
         isDragging = true;
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = new Vector3(mousePos.x, mousePos.y, 0);
+        //rb.position = new Vector3(mousePos.x, mousePos.y, 0);
+        rb.AddForce((mousePos-transform.position)*15, ForceMode2D.Impulse);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -68,7 +73,7 @@ public class Item : MonoBehaviour
             if(!isDragging)
             {
                 if(other.gameObject.tag == "Grinder" && type == Type.Plant)
-                transform.position = other.transform.position - new Vector3(0, 0.1f, 0);
+                //rb.position = other.transform.position - new Vector3(0, 0.1f, 0);
                 //rb.bodyType = RigidbodyType2D.Static;
                 otherScript.AddItem(gameObject, subType);
                 Destroy(this);
